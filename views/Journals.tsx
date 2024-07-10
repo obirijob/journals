@@ -1,7 +1,7 @@
 /** @format */
 
 import { View, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { getData } from '@/helpers/WebApi'
 import CText from '@/components/CText'
 import JournalWidget from './JournalWidget'
@@ -9,10 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { black, green } from '@/helpers/Colors'
 import moment from 'moment'
+import { UserContext } from '@/contexts/UserContext'
 
 const Journals = () => {
   const [journals, setJournals] = useState<null | []>([])
   const [refresh, setRefresh] = useState(false)
+
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     fetchJournals()
@@ -38,8 +41,8 @@ const Journals = () => {
           justifyContent: 'space-between'
         }}
       >
-        <CText style={{ fontSize: 30 }}>Hello 👋</CText>
-        <TouchableOpacity>
+        <CText style={{ fontSize: 30 }}>Hi 👋</CText>
+        <TouchableOpacity onPress={() => console.log(user)}>
           <View
             style={{
               width: 40,

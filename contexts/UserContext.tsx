@@ -6,7 +6,7 @@ export interface User {
   username: string
 }
 
-const UserContext = createContext<any>(null)
+export const UserContext = createContext<any>(null)
 
 export function UserContextProvider({ children }: { children: any }) {
   const [user, setUser] = useState<User | null>(null)

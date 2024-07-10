@@ -39,11 +39,11 @@ export default function RootLayout() {
   }
 
   async function refreshUser() {
-    console.log('refreshing')
-    const { success, message, data } = await getData('auth', {})
-    console.log(data, message)
+    const { success, data } = await getData('auth', {})
     if (success) {
       setUser(data)
+    } else {
+      setUser(null)
     }
   }
 

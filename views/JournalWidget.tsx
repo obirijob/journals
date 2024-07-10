@@ -5,6 +5,8 @@ import React from 'react'
 import { black, blue, green, white } from '@/helpers/Colors'
 import CText from '@/components/CText'
 import CButton from '@/components/CButton'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 const JournalWidget = ({ journal }: { journal: any }) => {
   const newTitle =
@@ -35,17 +37,37 @@ const JournalWidget = ({ journal }: { journal: any }) => {
       >
         {newTitle}
       </CText>
-      <CText style={{ marginBottom: 10 }}>{newContent}</CText>
+      <CText style={{ marginBottom: 15 }}>{newContent}</CText>
       <View
         style={{
-          backgroundColor: black + '88',
-          alignSelf: 'flex-start',
-          paddingHorizontal: 10,
-          paddingVertical: 5,
-          borderRadius: 5
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}
       >
-        <CText style={{ color: 'white' }}>{journal.categoryPop.name}</CText>
+        <View
+          style={{
+            backgroundColor: black + '88',
+            alignSelf: 'flex-start',
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            borderRadius: 5
+          }}
+        >
+          <CText style={{ color: 'white' }}>{journal.categoryPop.name}</CText>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            gap: 5,
+            alignItems: 'center',
+            // marginBottom: -5,
+            opacity: 0.5
+          }}
+        >
+          <FontAwesomeIcon icon={faUser} size={10} />
+          <CText>{journal.createdByPop.username}</CText>
+        </View>
       </View>
     </View>
   )
