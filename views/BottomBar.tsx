@@ -12,7 +12,7 @@ import { beige, black, green, white } from '@/helpers/Colors'
 import CText from '@/components/CText'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
-const BottomBar = () => {
+const BottomBar = ({ onAddJournal }: { onAddJournal: () => void }) => {
   return (
     <View
       style={{
@@ -23,7 +23,7 @@ const BottomBar = () => {
       }}
     >
       <BottomBarButton icon={faBook} text="Notes" />
-      <TouchableOpacity activeOpacity={1}>
+      <TouchableOpacity activeOpacity={1} onPress={onAddJournal}>
         <View
           style={{
             // borderWidth: 3,

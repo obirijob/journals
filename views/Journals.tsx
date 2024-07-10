@@ -13,7 +13,7 @@ import { UserContext } from '@/contexts/UserContext'
 import BottomBar from './BottomBar'
 import CSearch from '@/components/CSearch'
 
-const Journals = () => {
+const Journals = ({ onAddJournal }: { onAddJournal: () => void }) => {
   const [journals, setJournals] = useState<null | []>([])
   const [refresh, setRefresh] = useState(false)
 
@@ -115,7 +115,7 @@ const Journals = () => {
         ))}
       </ScrollView>
       <View style={{ marginTop: 20 }}>
-        <BottomBar />
+        <BottomBar onAddJournal={onAddJournal} />
       </View>
     </View>
   )
