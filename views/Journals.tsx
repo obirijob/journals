@@ -6,10 +6,12 @@ import { getData } from '@/helpers/WebApi'
 import CText from '@/components/CText'
 import JournalWidget from './JournalWidget'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { black, green } from '@/helpers/Colors'
+import { faFilter, faUser } from '@fortawesome/free-solid-svg-icons'
+import { black, green, white } from '@/helpers/Colors'
 import moment from 'moment'
 import { UserContext } from '@/contexts/UserContext'
+import BottomBar from './BottomBar'
+import CSearch from '@/components/CSearch'
 
 const Journals = () => {
   const [journals, setJournals] = useState<null | []>([])
@@ -32,7 +34,12 @@ const Journals = () => {
 
   return (
     <View
-      style={{ paddingHorizontal: 10, flexDirection: 'column', height: '100%' }}
+      style={{
+        paddingHorizontal: 10,
+        flexDirection: 'column',
+        height: '100%',
+        marginTop: 10
+      }}
     >
       <View
         style={{
@@ -41,14 +48,16 @@ const Journals = () => {
           justifyContent: 'space-between'
         }}
       >
-        <CText style={{ fontSize: 30 }}>Hi 👋</CText>
+        <CText style={{ textTransform: 'capitalize', fontSize: 30 }}>
+          Hi {user.username ?? ''} 👋
+        </CText>
         <TouchableOpacity onPress={() => console.log(user)}>
           <View
             style={{
               width: 40,
               height: 40,
               borderRadius: 20,
-              backgroundColor: black + '2b',
+              backgroundColor: black + '0b',
               alignItems: 'center',
               justifyContent: 'center'
             }}
@@ -59,8 +68,39 @@ const Journals = () => {
       </View>
       <View style={{ marginBottom: 10 }}>
         <CText style={{ fontSize: 16, marginTop: 15 }}>
-          {moment().format('MMM, YYYY').toUpperCase()}
+          {moment().format('ddd, Do MMM, YYYY').toUpperCase()}
         </CText>
+      </View>
+
+      <View
+        style={{
+          marginBottom: 15,
+          marginTop: 5,
+          gap: 10,
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}
+      >
+        <View style={{ flex: 1 }}>
+          <CSearch />
+        </View>
+        <TouchableOpacity>
+          <View
+            style={{
+              width: 50,
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 45,
+              backgroundColor: black + '2b',
+              borderRadius: 15
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faFilter}
+              style={{ color: black, marginBottom: -3 }}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
 
       <ScrollView
@@ -74,7 +114,9 @@ const Journals = () => {
           <JournalWidget key={index} journal={journal} />
         ))}
       </ScrollView>
-      <View style={{ marginTop: 20 }}></View>
+      <View style={{ marginTop: 20 }}>
+        <BottomBar />
+      </View>
     </View>
   )
 }

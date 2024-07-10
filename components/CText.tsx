@@ -8,7 +8,7 @@ const CText = ({
   children,
   style
 }: {
-  children: String
+  children: any
   style?: StyleProp<TextStyle>
 }) => {
   const [loaded] = useFonts({

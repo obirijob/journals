@@ -12,6 +12,7 @@ import Login from '@/views/Login'
 import { getData } from '@/helpers/WebApi'
 import { UserContextProvider } from '@/contexts/UserContext'
 import NotificationContextProvider from '@/contexts/NotificationContext'
+import Main from '@/views/Main'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -21,30 +22,14 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf')
   })
 
-  const [user, setUser] = useState<any>(null)
-  const [refreshLogin, setRefreshLogin] = useState<boolean>(false)
-
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync()
     }
   }, [loaded])
 
-  useEffect(() => {
-    loaded && refreshUser()
-  }, [refreshLogin])
-
   if (!loaded) {
     return null
-  }
-
-  async function refreshUser() {
-    const { success, data } = await getData('auth', {})
-    if (success) {
-      setUser(data)
-    } else {
-      setUser(null)
-    }
   }
 
   return (
@@ -52,13 +37,7 @@ export default function RootLayout() {
       <NotificationContextProvider>
         <UserContextProvider>
           <SafeAreaView>
-            {user ? (
-              <View style={{ width: '100%', height: '100%', padding: 10 }}>
-                <Journals />
-              </View>
-            ) : (
-              <Login refreshLogin={() => setRefreshLogin(!refreshLogin)} />
-            )}
+            <Main />
           </SafeAreaView>
         </UserContextProvider>
       </NotificationContextProvider>
