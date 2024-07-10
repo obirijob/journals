@@ -13,7 +13,13 @@ import { UserContext } from '@/contexts/UserContext'
 import BottomBar from './BottomBar'
 import CSearch from '@/components/CSearch'
 
-const Journals = ({ onAddJournal }: { onAddJournal: () => void }) => {
+const Journals = ({
+  onAddJournal,
+  selectJournal
+}: {
+  onAddJournal: () => void
+  selectJournal: (x: any) => void
+}) => {
   const [journals, setJournals] = useState<null | []>([])
   const [refresh, setRefresh] = useState(false)
 
@@ -128,7 +134,11 @@ const Journals = ({ onAddJournal }: { onAddJournal: () => void }) => {
         }}
       >
         {journals?.map((journal, index) => (
-          <JournalWidget key={index} journal={journal} />
+          <JournalWidget
+            key={index}
+            journal={journal}
+            selectJournal={selectJournal}
+          />
         ))}
       </ScrollView>
       <View style={{ marginTop: 20 }}>

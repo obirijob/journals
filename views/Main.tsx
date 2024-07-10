@@ -7,6 +7,7 @@ import Journals from './Journals'
 import Login from './Login'
 import { getData } from '@/helpers/WebApi'
 import AddJournal from './AddJournal'
+import ViewJournal from './ViewJournal'
 
 const Main = () => {
   const [refreshLogin, setRefreshLogin] = useState<boolean>(false)
@@ -35,6 +36,10 @@ const Main = () => {
       style={{ width: '100%', height: '100%', padding: 10 }}
     >
       <Journals
+        selectJournal={j => {
+          setNewJournal(false)
+          setJournal(j)
+        }}
         onAddJournal={() => {
           setNewJournal(true)
           setJournal(null)
@@ -48,7 +53,8 @@ const Main = () => {
           }}
         />
       ) : journal ? (
-        <AddJournal
+        <ViewJournal
+          journal={journal}
           close={() => {
             setNewJournal(false)
             setJournal(null)
