@@ -54,7 +54,12 @@ const Login = ({ refreshLogin }: { refreshLogin: () => void }) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
-        style={{ padding: 20, display: 'flex', gap: 20, height: '100%' }}
+        style={{
+          padding: 20,
+          display: 'flex',
+          gap: 20,
+          height: '100%'
+        }}
       >
         <View style={{ flex: 1 }} />
         <FontAwesomeIcon

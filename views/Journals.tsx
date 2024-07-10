@@ -6,7 +6,7 @@ import { getData } from '@/helpers/WebApi'
 import CText from '@/components/CText'
 import JournalWidget from './JournalWidget'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faFilter, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faSync, faUser } from '@fortawesome/free-solid-svg-icons'
 import { black, green, white } from '@/helpers/Colors'
 import moment from 'moment'
 import { UserContext } from '@/contexts/UserContext'
@@ -97,6 +97,23 @@ const Journals = ({ onAddJournal }: { onAddJournal: () => void }) => {
           >
             <FontAwesomeIcon
               icon={faFilter}
+              style={{ color: black, marginBottom: -3 }}
+            />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setRefresh(!refresh)}>
+          <View
+            style={{
+              width: 50,
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 45,
+              backgroundColor: black + '2b',
+              borderRadius: 15
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faSync}
               style={{ color: black, marginBottom: -3 }}
             />
           </View>

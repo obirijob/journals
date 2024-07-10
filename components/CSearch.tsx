@@ -5,8 +5,12 @@ import React from 'react'
 import { white } from '@/helpers/Colors'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { useFonts } from 'expo-font'
 
 const CSearch = () => {
+  const [loaded] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf')
+  })
   return (
     <View
       style={{
@@ -16,7 +20,10 @@ const CSearch = () => {
         borderRadius: 15
       }}
     >
-      <TextInput placeholder="Search" style={{ flex: 1 }} />
+      <TextInput
+        placeholder="Search"
+        style={{ flex: 1, fontFamily: 'SpaceMono' }}
+      />
       <TouchableOpacity>
         <View>
           <FontAwesomeIcon icon={faSearch} />
